@@ -1,27 +1,27 @@
-package hr.fer.oop.Fibonacci;
+package hr.fer.oop.Factorial;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class FibonacciIterator implements Iterator<Integer> {
+public class FactorialIterator implements Iterator<Integer> {
     private int num;
     private int[] sequence;
-    int index=0;
-    FibonacciIterator(int num){
+
+    public FactorialIterator(int num) {
         if(num<0)
             throw new IllegalArgumentException();
-        this.num=num;
-        this.sequence=new int[num];
-        for(int i = 0;i<num;i++ ){
-            if(i==0)
-                sequence[i]=0;
-            else if (i==1)
-                sequence[i]=1;
-            else
-                sequence[i]=sequence[i-1]+sequence[i-2];
+        this.num = num;
+        this.sequence = new int[num];
+        int current=1;
+        for (int i = 0; i < num; i++) {
+            current=1;
+            for(int j = 2;j<i+1;j++){
+                current*=j;
+            }
+            sequence[i]=current;
         }
     }
-
+    int index=0;
     @Override
     public boolean hasNext() {
         return index<num;
